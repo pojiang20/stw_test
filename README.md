@@ -1,3 +1,6 @@
+demo中用到的runtime.ReadMemStats方法，可以读取内存状态，而读取内存状态时需要执行stop the world。
+因此demo中启动了一个独立的goroutine周期性触发stop the world，并通过压测来查看stop the world对http服务性能的影响。
+
 有stop the world
 ```
 ❯ wrk -t20 -c800 -d30s --latency http://127.0.0.1:8080/test
